@@ -1,7 +1,7 @@
 project=$(shell basename $(shell pwd))
 
 in:
-	@docker exec --user=php -it "$(project)-php-fpm-1" /bin/bash
+	@docker exec --user=php -it "$(project)-php-fpm-1" /bin/sh
 
 in-root:
 	docker exec --user=root -it "$(project)-php-fpm-1" /bin/sh
@@ -36,7 +36,8 @@ install:
 	@chown -R www-data:www-data /var/www/html/public
 	@chmod o+w ./storage/ -R
 
-laravel-chmod:
+permissions:
+	@chown -R www-data:www-data /var/www/html/public
 	@chmod o+w ./storage/ -R
 
 md:
