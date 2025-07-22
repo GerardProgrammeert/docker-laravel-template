@@ -22,7 +22,7 @@ RUN apk add --no-cache \
         --with-jpeg=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip
 
-# Add php user with specified UID to ensure matching file ownership between the WSL user
+#  Add php user with specified UID to ensure matching file ownership between the WSL user
 ARG UID=1000
 RUN adduser -D -u $UID -s /bin/bash php
 USER php
