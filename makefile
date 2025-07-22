@@ -50,3 +50,15 @@ cs-fixer:
 
 cs:
 	./vendor/bin/phpcs
+
+optimize:
+	php artisan optimize
+	php artisan config:clear
+	php artisan cache:clear
+	phh artisan route:clear
+
+db.backup:
+	docker exec elastic-mysql-1 sh -c "mysqldump -u root -p\$$MYSQL_ROOT_PASSWORD \$$MYSQL_DATABASE" > backup.sql
+
+db.restore:
+	cat backup.sql | docker exec -i elastic-mysql-1 sh -c "mysql -u root -p\$$MYSQL_ROOT_PASSWORD \$$MYSQL_DATABASE"
