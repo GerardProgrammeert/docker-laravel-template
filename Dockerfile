@@ -7,6 +7,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 # Install system dependencies
 RUN apk add --no-cache \
     make \
+    bash \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
