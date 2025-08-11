@@ -13,7 +13,7 @@ down:
 	@docker-compose down
 
 refresh:
-	@docker-compose down -v
+	@docker-compose down --remove-orphans -v
 	@docker-compose up -d
 
 build:
@@ -35,6 +35,8 @@ install:
 	@php artisan key:generate
 	@chown -R www-data:www-data /var/www/html/public
 	@chmod o+w ./storage/ -R
+	@php artisan migrate
+	make optimize
 
 permissions:
 	@chown -R www-data:www-data /var/www/html/public
